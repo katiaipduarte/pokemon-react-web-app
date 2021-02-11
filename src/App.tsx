@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
 
-function App() {
+import PokemonList from "./components/pokemonList";
+import CapturedPokemons from "./components/capturedPokemons";
+import { PokemonContext, PokemonProvider } from "./context/pokemonProvider";
+
+const App = (): JSX.Element => {
+  useContext(PokemonContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PokemonProvider>
+      <div className="App">
+        <PokemonList />
+        <CapturedPokemons />
+      </div>
+    </PokemonProvider>
   );
-}
+};
 
 export default App;
