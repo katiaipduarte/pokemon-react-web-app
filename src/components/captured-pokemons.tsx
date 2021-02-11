@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Pokemon } from "../@types/pokemon";
-import { PokemonContextType } from "../@types/pokemonContext";
-import { PokemonContext } from "../context/pokemonProvider";
+import { PokemonContextType } from "../@types/pokemon-context";
+import { PokemonContext } from "../context/pokemon-provider";
 
 const CapturedPokemons = (): JSX.Element => {
   const {
@@ -27,7 +27,7 @@ const CapturedPokemons = (): JSX.Element => {
       <h2>Captured Pokemons</h2>
       {capturedPokemons.map((pokemon: Pokemon) => {
         return (
-          <div key={pokemon.id}>
+          <div key={pokemon.name}>
             <p>{pokemon.name}</p>
             <button onClick={(_) => release(pokemon)}>-</button>
           </div>

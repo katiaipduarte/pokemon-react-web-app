@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
-import PokemonList from "./components/pokemonList";
-import CapturedPokemons from "./components/capturedPokemons";
-import { PokemonContext, PokemonProvider } from "./context/pokemonProvider";
+import PokemonList from "./components/pokemon-list";
+import CapturedPokemons from "./components/captured-pokemons";
+import { PokemonContext, PokemonProvider } from "./context/pokemon-provider";
 
 const App = (): JSX.Element => {
   useContext(PokemonContext);
