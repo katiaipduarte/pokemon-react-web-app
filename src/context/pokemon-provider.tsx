@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { Pokemon } from "../@types/pokemon";
 import { PokemonContextType } from "../@types/pokemon-context";
-import { PokemonService } from "../@types/pokemon-service";
+import { PokemonResponse } from "../@types/pokemon-response";
+import { getPokemon } from "../services/pokemon";
 
 interface PokemonProviderProps {
   children: ReactNode | ReactNode[];
@@ -14,13 +14,9 @@ export const PokemonProvider = (props: PokemonProviderProps): JSX.Element => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [capturedPokemons, setCapturedPokemons] = useState<Pokemon[]>([]);
 
+
   useEffect(() => {
-    const url = "https://pokeapi.co/api/v2/pokemon";
-    axios
-      .get(url)
-      .then((response: AxiosResponse<PokemonService>) =>
-        setPokemons(response.data.results)
-      );
+  (getPokemon() as Promise<PokemonResponse>).then((response: PokemonResponse) => setPokemons(response.results))
   }, []);
 
   const providerValue = {
@@ -34,4 +30,4 @@ export const PokemonProvider = (props: PokemonProviderProps): JSX.Element => {
       {props.children}
     </PokemonContext.Provider>
   );
-};
+}; 
